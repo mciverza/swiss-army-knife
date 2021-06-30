@@ -29,6 +29,20 @@ RUN apt-get install -y \
 ADD https://github.com/beefsack/webify/releases/download/v1.5.0/webify-v1.5.0-linux-amd64.tar.gz .
 RUN tar -C /usr/bin/ -xzf webify-v1.5.0-linux-amd64.tar.gz webify \
     && rm webify-v1.5.0-linux-amd64.tar.gz
+
+## Kafkctl
+ADD https://github.com/deviceinsight/kafkactl/releases/download/v1.17.2/kafkactl_1.17.2_linux_amd64.tar.gz 
+RUN tar -C /usr/bin/ -xzf kafkactl_1.17.2_linux_amd64.tar.gzkafkactl \
+    && rm kafkactl_1.17.2_linux_amd64.tar.gz
+
+## Kafkacat
+# https://github.com/edenhill/librdkafka
+# https://github.com/edenhill/kafkacat/
+##  has dependency on librdkafka from Confluent
+# wget -qO - https://packages.confluent.io/deb/6.2/archive.key | sudo apt-key add -
+# add-apt-repository "deb [arch=amd64] https://packages.confluent.io/deb/6.2 stable main"
+# apt-get update && # apt install librdkafka-dev
+## TODO TODO TODO TODO TODO
     
 # Fix SSH permissions that always haunt me
 RUN mkdir -p /var/run/sshd /root/.ssh && touch /root/.ssh/authorized_keys && chmod 0700 /root/.ssh && chmod 0600 /root/.ssh/authorized_keys
